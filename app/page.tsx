@@ -73,6 +73,8 @@ export default async function Page() {
                 <a
                   href="https://github.com/SithumBuddhika"
                   aria-label="Github"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ display: "inline-block" }}
                 >
                   <Image
@@ -85,8 +87,10 @@ export default async function Page() {
                 </a>
 
                 <a
-                  href="https://www.linkedin.com/in/sithum-buddhika-jayalal-827860341#"
+                  href="https://www.linkedin.com/in/sithum-buddhika-jayalal-827860341"
                   aria-label="LinkedIn"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ display: "inline-block" }}
                 >
                   <Image
@@ -101,6 +105,8 @@ export default async function Page() {
                 <a
                   href="#"
                   aria-label="Discord"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ display: "inline-block" }}
                 >
                   <Image
@@ -115,6 +121,8 @@ export default async function Page() {
                 <a
                   href="#"
                   aria-label="Twitter"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ display: "inline-block" }}
                 >
                   <Image
