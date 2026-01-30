@@ -148,7 +148,7 @@ export default function ContactSection({
               </a>
 
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/sithum-buddhika-jayalal-827860341"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"

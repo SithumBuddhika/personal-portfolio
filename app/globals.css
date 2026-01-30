@@ -3,6 +3,7 @@
 
 :root {
   --container: 1180px;
+  --title-font: var(--font-title); /* ✅ DM Sans from layout.tsx */
 }
 
 /* ✅ smooth anchor scrolling */
@@ -77,6 +78,24 @@ img {
   outline-offset: -1px;
 }
 
+/* ✅ DM Sans ONLY for headings/titles (NOT hero) */
+.sectionTitle,
+.skillsTitle,
+.aboutTitle,
+.bigTitle,
+.workNum,
+.workH,
+.expTitle {
+  font-family:
+    var(--title-font),
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
 /* ---------------- NAVBAR ---------------- */
 .navbar {
   background: #fff;
@@ -113,9 +132,10 @@ img {
 
 .navlink {
   color: rgba(0, 0, 0, 0.65);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 650;
   text-decoration: none;
+  letter-spacing: -0.2px;
 }
 .navlink:hover {
   color: #000;
@@ -123,7 +143,7 @@ img {
 
 .navCenter {
   display: flex;
-  gap: 42px;
+  gap: 46px;
   align-items: center;
 }
 

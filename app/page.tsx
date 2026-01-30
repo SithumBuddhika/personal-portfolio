@@ -85,7 +85,7 @@ export default async function Page() {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/sithum-buddhika-jayalal-827860341#"
                   aria-label="LinkedIn"
                   style={{ display: "inline-block" }}
                 >

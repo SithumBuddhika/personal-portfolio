@@ -19,19 +19,9 @@ export default function Navbar({ resumeUrl }: { resumeUrl?: string }) {
 
   const [open, setOpen] = useState(false);
 
-  // ✅ track currently selected hash (for active styling)
-  const [activeHash, setActiveHash] = useState<string>("");
-
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
-
-  useEffect(() => {
-    const onHash = () => setActiveHash(window.location.hash || "");
-    onHash();
-    window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
-  }, []);
 
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
@@ -42,7 +32,6 @@ export default function Navbar({ resumeUrl }: { resumeUrl?: string }) {
   }, [open]);
 
   const linkHref = (id: string) => `${base}#${id}`;
-  const isActive = (id: string) => activeHash === `#${id}`;
 
   return (
     <header className="navbar">
@@ -106,12 +95,8 @@ export default function Navbar({ resumeUrl }: { resumeUrl?: string }) {
             <Link
               key={l.id}
               href={linkHref(l.id)}
-              className={`mobileLink ${isActive(l.id) ? "mobileLinkActive" : ""}`}
-              onClick={() => {
-                // ✅ instant active highlight on tap
-                setActiveHash(`#${l.id}`);
-                setOpen(false);
-              }}
+              className="mobileLink"
+              onClick={() => setOpen(false)}
             >
               {l.label}
             </Link>
