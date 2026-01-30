@@ -14,7 +14,7 @@ type Project = {
 
 export default function ProjectsSection({ projects }: { projects: Project[] }) {
   return (
-    <section className="sectionBlack workWrap">
+    <section className="sectionSoftBlack workWrap">
       <div className="container">
         {/* ✅ Header */}
         <div

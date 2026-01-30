@@ -64,6 +64,19 @@ img {
   color: #fff;
 }
 
+/* ✅ softer dark background (better for images) */
+.sectionSoftBlack {
+  background: #0b0b0b; /* softer than pure black */
+  color: #fff;
+}
+
+/* optional: make images stand out a bit more on dark bg */
+.sectionSoftBlack .workMedia {
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.55);
+  outline: 1px solid rgba(255, 255, 255, 0.08);
+  outline-offset: -1px;
+}
+
 /* ---------------- NAVBAR ---------------- */
 .navbar {
   background: #fff;

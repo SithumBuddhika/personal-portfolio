@@ -34,7 +34,7 @@ export default function CertificationsSection({
   };
 
   return (
-    <section className="sectionBlack workWrap">
+    <section className="sectionSoftBlack workWrap">
       <div className="container">
         {/* ✅ same header alignment style as projects */}
         <div
