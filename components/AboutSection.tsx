@@ -96,20 +96,23 @@ export default function AboutSection() {
                 maxWidth: 620,
               }}
             >
-              I&apos;m a passionate, self-proclaimed designer who specializes in
-              full stack development (React.js &amp; Node.js). I am very
-              enthusiastic about bringing the technical and visual aspects of
-              digital products to life. User experience, pixel perfect design,
-              and writing clear, readable, highly performant code matters to me.
+              I’m a Software Engineering undergraduate at SLIIT with a strong
+              interest in web application development and full-stack
+              engineering. I enjoy taking an idea from a rough concept and
+              turning it into a real product—from designing backend APIs to
+              building clean, user-friendly interfaces.
               <br />
               <br />
-              I began my journey as a web developer in 2015, and since then,
-              I&apos;ve continued to grow and evolve as a developer, taking on
-              new challenges and learning the latest technologies along the way.
+              I’m a Software Engineering undergraduate at SLIIT with a strong
+              interest in web application development and full-stack
+              engineering. I enjoy taking an idea from a rough concept and
+              turning it into a real product—from designing backend APIs to
+              building clean, user-friendly interfaces.
               <br />
               <br />
-              When I&apos;m not in full-on developer mode, you can find me
-              hovering around on twitter or on indie hacker.
+              I’m currently looking for internship or entry-level opportunities
+              where I can learn from experienced engineers, contribute to real
+              products, and keep improving as a full-stack developer.
             </p>
           </div>
         </div>

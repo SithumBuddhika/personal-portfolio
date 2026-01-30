@@ -62,9 +62,10 @@ export default async function Page() {
               </h1>
 
               <p className="heroDesc">
-                I’m {profile?.name} Lorem Ipsum is simply dummy text of the
-                printing and typesetting industry. Lorem Ipsum has been the
-                industry&apos;s standard dummy text ever since the 1500s.
+                Software Engineering undergraduate at SLIIT building full-stack
+                web applications with React, Node.js, Express, and MongoDB. I
+                care about clean architecture, smooth UX, and shipping practical
+                features.
               </p>
 
               {/* socials */}
