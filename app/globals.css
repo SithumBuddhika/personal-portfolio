@@ -1,26 +1,913 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --container: 1180px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ✅ smooth anchor scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  overflow-x: hidden;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------------- TITLES ---------------- */
+.sectionTitle {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  text-align: center;
+  line-height: 1.1;
+  margin: 0;
+}
+.sectionTitle span {
+  font-weight: 900;
+}
+
+.sectionBlack {
+  background: #000;
+  color: #fff;
+}
+
+/* ---------------- NAVBAR ---------------- */
+.navbar {
+  background: #fff;
+}
+
+.navRow {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #111;
+  font-weight: 800;
+}
+
+.brandDot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #000;
+  flex: 0 0 auto;
+}
+
+.brandText {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.navlink {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.navlink:hover {
+  color: #000;
+}
+
+.navCenter {
+  display: flex;
+  gap: 42px;
+  align-items: center;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.resumeBtn {
+  height: 42px;
+  padding: 0 16px;
+  background: #000;
+  color: #fff;
+  border-radius: 12px;
+  border: 2px solid #000;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* burger hidden on desktop */
+.burgerBtn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    border-color 0.12s ease;
+}
+.burgerBtn:active {
+  transform: scale(0.96);
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.28);
+}
+
+/* ---------------- MOBILE MENU ---------------- */
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 80;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 86%;
+  max-width: 360px;
+  height: 100vh;
+  background: #fff;
+  z-index: 90;
+  transform: translateX(110%);
+  transition: transform 0.25s ease;
+  padding: 18px 18px 26px;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.18);
+}
+
+.mobileMenu.open {
+  transform: translateX(0);
+}
+
+.mobileMenuTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobileMenuBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.closeBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(0, 0, 0, 0.18);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    border-color 0.12s ease;
+}
+.closeBtn:active {
+  transform: scale(0.96);
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.28);
+}
+
+.mobileLinks {
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.mobileLink {
+  padding: 16px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  color: #111;
+  font-weight: 900;
+  background: #fff;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    border-color 0.12s ease;
+}
+.mobileLink:active {
+  transform: scale(0.99);
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+/* active item style */
+.mobileLinkActive {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.mobileResume {
+  margin-top: 14px;
+  height: 52px;
+  border-radius: 14px;
+  background: #000;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 900;
+  text-decoration: none;
+}
+.mobileResume:active {
+  transform: scale(0.99);
+}
+
+/* ---------------- HERO ---------------- */
+.heroWrap {
+  background: #fff;
+  min-height: calc(100vh - 78px);
+  display: flex;
+  align-items: center;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+  padding: 0;
+}
+
+/* ✅ changed: NOT bold by default */
+.heroTitle {
+  font-size: 56px;
+  font-weight: 400; /* was 900 */
+  letter-spacing: -0.9px;
+  line-height: 1.05;
+  margin: 0;
+}
+
+/* ✅ only parts you want bold */
+.heroBold {
+  font-weight: 900;
+}
+
+/* ✅ “Based in” stays normal */
+.heroBased {
+  font-weight: 400;
+}
+
+/* ✅ outlined role style (applies to RoleTicker text) */
+.heroRole {
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 3px #111;
+  text-stroke: 3px #111;
+}
+
+/* ensure the animated inner span also gets the stroke */
+.heroRole span {
+  color: transparent !important;
+  -webkit-text-stroke: 3px #111;
+  text-stroke: 3px #111;
+}
+
+.heroDesc {
+  margin-top: 16px;
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.heroDivider {
+  margin-top: 28px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.socialRow {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+/* ---------------- SKILLS ---------------- */
+.skillsWrap {
+  padding: 70px 0 110px;
+  background: #fff;
+}
+
+.skillsTitle {
+  text-align: center;
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.skillsGrid {
+  margin-top: 46px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 26px;
+}
+
+/* ---------------- EXPERIENCE ---------------- */
+.expWrap {
+  padding: 90px 0;
+  margin-top: 0;
+}
+.expList {
+  margin-top: 46px;
+  display: grid;
+  gap: 26px;
+}
+.expCard {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 14px;
+  padding: 28px;
+}
+.expCardFill {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 28px;
+}
+.expTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.expLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.expTitle {
+  font-size: 22px;
+  font-weight: 900;
+}
+.expDate {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+.expDesc {
+  margin-top: 14px;
+  max-width: 980px;
+  font-size: 15px;
+  line-height: 26px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------------- ABOUT ---------------- */
+.aboutWrap {
+  padding: 80px 0;
+  background: #fff;
+}
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.aboutTitle {
+  margin: 0;
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+}
+.aboutText {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+/* ---------------- PROJECTS + CERTS ---------------- */
+
+.pageDarkSoft {
+  background: #0b0b0b;
+  min-height: 100vh;
+}
+
+/* header layout */
+.workHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  margin-bottom: 30px;
+}
+
+.workViewAll {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ✅ view all button (no wrap on desktop) */
+.viewAllBtn {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap; /* ✅ IMPORTANT */
+  line-height: 1;
+}
+
+.viewAllIcon {
+  font-size: 18px;
+  line-height: 0;
+}
+
+/* mobile: stack */
+@media (max-width: 980px) {
+  .workHeader {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    justify-items: center;
+    min-height: auto;
+  }
+
+  .workViewAll {
+    position: static;
+    transform: none;
+  }
+}
+
+.workWrap {
+  padding: 90px 0;
+}
+.workList {
+  margin-top: 56px;
+  display: grid;
+  gap: 90px;
+}
+.workRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.workRow.reverse .workMedia {
+  order: 2;
+}
+.workMedia {
+  border-radius: 22px;
+  overflow: hidden;
+}
+.workImg {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+.workNum {
+  font-size: 46px;
+  font-weight: 900;
+}
+.workH {
+  margin-top: 10px;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 34px;
+}
+.workP {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 520px;
+}
+.workLink {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+.workLink:hover {
+  color: #fff;
+}
+
+/* ---------------- CONTACT ---------------- */
+.contactWrap {
+  padding: 80px 0;
+  background: #fff;
+}
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+}
+.input {
+  width: 100%;
+  height: 60px;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  padding: 0 18px;
+  font-size: 16px;
+  outline: none;
+}
+.textarea {
+  width: 100%;
+  min-height: 180px;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  padding: 16px 18px;
+  font-size: 16px;
+  outline: none;
+}
+.contactBtn {
+  height: 52px;
+  padding: 0 22px;
+  border-radius: 12px;
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  font-weight: 900;
+}
+
+.contactBtn {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.contactBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.contactBtn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.contactBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.bigTitle {
+  font-size: 56px;
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+.bigDesc {
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.55);
+}
+.bigStrong {
+  margin-top: 32px;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+/* ---------------- FOOTER ---------------- */
+.footer {
+  background: #000;
+  color: #fff;
+  padding: 34px 0;
+}
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.footerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 16px;
+}
+.footerLogo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  display: grid;
+  place-items: center;
+}
+.footerRight {
+  text-align: right;
+  font-weight: 700;
+  font-size: 16px;
+}
+.footerRight div + div {
+  margin-top: 10px;
+}
+
+/* =========================================================
+   ✅ MOBILE
+   ========================================================= */
+@media (max-width: 980px) {
+  .container {
+    padding: 0 18px;
+  }
+
+  /* ✅ NAVBAR MOBILE */
+  .navCenter {
+    display: none;
+  }
+  .burgerBtn {
+    display: inline-flex;
+  }
+  .navRow {
+    height: 72px;
+  }
+  .resumeBtn {
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  /* ✅ HERO MOBILE */
+  .heroWrap {
+    min-height: auto;
+    display: block;
+    padding: 10px 0 22px;
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .heroTitle {
+    font-size: 34px;
+    line-height: 1.08;
+    letter-spacing: -0.7px;
+  }
+
+  .heroDesc {
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 100%;
+    margin-top: 10px;
+  }
+
+  .socialRow {
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .heroDivider {
+    margin-top: 16px;
+  }
+
+  /* ✅ SKILLS MOBILE */
+  .skillsWrap {
+    padding: 52px 0 70px;
+  }
+  .skillsTitle {
+    font-size: 34px;
+  }
+  .skillsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 26px;
+  }
+
+  /* ✅ EXPERIENCE MOBILE */
+  .expWrap {
+    padding: 70px 0;
+  }
+  .expList {
+    margin-top: 26px;
+    gap: 18px;
+  }
+  .expCard,
+  .expCardFill {
+    padding: 18px;
+  }
+  .expTop {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .expTitle {
+    font-size: 18px;
+  }
+  .expDate {
+    font-size: 13px;
+  }
+  .expDesc {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  /* ✅ ABOUT MOBILE */
+  .aboutWrap {
+    padding: 60px 0;
+  }
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .aboutTitle {
+    font-size: 34px;
+  }
+  .aboutText {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  /* ✅ PROJECTS/CERTS MOBILE */
+  .workWrap {
+    padding: 70px 0;
+  }
+  .workList {
+    margin-top: 34px;
+    gap: 60px;
+  }
+  .workRow {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .workRow.reverse .workMedia {
+    order: 0;
+  }
+  .workMedia {
+    border-radius: 18px;
+  }
+  .workImg {
+    height: 260px;
+  }
+  .workNum {
+    font-size: 34px;
+  }
+  .workH {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .workP {
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 100%;
+  }
+
+  /* ✅ CONTACT MOBILE */
+  .contactWrap {
+    padding: 60px 0;
+  }
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .input {
+    height: 56px;
+    font-size: 15px;
+  }
+  .textarea {
+    min-height: 160px;
+    font-size: 15px;
+  }
+  .bigTitle {
+    font-size: 40px;
+  }
+  .bigDesc {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bigStrong {
+    font-size: 22px;
+  }
+
+  /* ✅ FOOTER MOBILE */
+  .footerInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footerRight {
+    text-align: left;
+  }
+}
+
+/* ====== LIST PAGES (Projects/Certifications) - MOBILE SAFETY ====== */
+.listRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.listMedia {
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.listImg {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.listText {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.clamp2,
+.clamp3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp2 {
+  -webkit-line-clamp: 2;
+}
+.clamp3 {
+  -webkit-line-clamp: 3;
+}
+
+/* ✅ mobile: always stack + clamp */
+@media (max-width: 980px) {
+  .listRow {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .listImg {
+    height: 240px;
+  }
+
+  /* keep numbers + headings from getting too huge */
+  .workNum {
+    font-size: 30px;
+  }
+  .workH {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .workP {
+    font-size: 14px;
+    line-height: 22px;
+  }
 }
