@@ -26,6 +26,7 @@ export default async function Page() {
       resumeUrl: "",
       email: "Officialsithumbuddhika@gmail.com",
       phone: "+94768863678",
+      whatsapp: "+94763464078",
     } as any);
 
   const projects = await Project.find({ featured: true })
@@ -102,7 +103,7 @@ export default async function Page() {
                   />
                 </a>
 
-                <a
+                {/* <a
                   href="#"
                   aria-label="Discord"
                   target="_blank"
@@ -116,9 +117,9 @@ export default async function Page() {
                     height={56}
                     priority
                   />
-                </a>
+                </a> */}
 
-                <a
+                {/* <a
                   href="#"
                   aria-label="Twitter"
                   target="_blank"
@@ -132,7 +133,7 @@ export default async function Page() {
                     height={56}
                     priority
                   />
-                </a>
+                </a> */}
               </div>
             </div>
 
@@ -180,8 +181,12 @@ export default async function Page() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact">
-        <ContactSection email={profile?.email} phone={profile?.phone} />
+      <section className="sectionTitle expTitle" id="contact">
+        <ContactSection
+          email={profile?.email}
+          phone={profile?.phone}
+          whatsapp={profile?.whatsapp}
+        />
       </section>
 
       <Footer />

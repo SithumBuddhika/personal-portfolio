@@ -11,6 +11,8 @@ const skills = [
   { name: "React", src: "/assets/skill-react.svg" },
   { name: "Tailwind", src: "/assets/skill-tailwind.svg" },
   { name: "Typescript", src: "/assets/skill-ts.svg" },
+
+  { name: "Node.js", src: "/assets/skills-nodejs.svg" },
 ];
 
 export default function SkillGrid() {
@@ -25,7 +27,6 @@ export default function SkillGrid() {
     >
       {skills.map((s) => (
         <div key={s.name} style={{ display: "flex", justifyContent: "center" }}>
-          {/* Your SVG already contains the full “card” look */}
           <Image
             src={s.src}
             alt={s.name}

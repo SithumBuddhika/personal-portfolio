@@ -126,8 +126,9 @@ img {
 }
 
 .brandText {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 850;
+  letter-spacing: -0.3px;
 }
 
 .navlink {
@@ -658,6 +659,103 @@ img {
   margin-top: 32px;
   font-size: 28px;
   font-weight: 900;
+}
+
+/* ---------------- CONTACT (INFO UI) ---------------- */
+.contactInfo {
+  padding-top: 6px;
+}
+
+/* card container for contact details */
+.contactCard {
+  margin-top: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  padding: 18px;
+  background: #fff;
+  display: grid;
+  gap: 14px;
+}
+
+/* each row */
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* small label */
+.contactLabel {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* value/link */
+.contactValue {
+  font-size: 18px;
+  font-weight: 900;
+  color: #111;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+/* WhatsApp link (NOT a button) */
+.contactValue.whatsapp {
+  font-weight: 900;
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.contactValue.whatsapp:hover {
+  opacity: 0.85;
+}
+
+/* optional: lighter phone text if you want */
+.contactValue.muted {
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* ✅ Mobile: keep contact info clean */
+@media (max-width: 980px) {
+  .contactCard {
+    padding: 14px;
+  }
+  .contactValue {
+    font-size: 16px;
+  }
+}
+
+/* only affects the row inside ContactSection */
+.contactActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap; /* ✅ allows wrapping instead of overflow */
+}
+
+/* keep the button from becoming a giant block */
+.contactActions .contactBtn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* ✅ Mobile: make button full width and socials go next line */
+@media (max-width: 980px) {
+  .contactActions {
+    gap: 12px;
+  }
+
+  .contactActions .contactBtn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ---------------- FOOTER ---------------- */

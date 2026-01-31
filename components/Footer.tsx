@@ -11,7 +11,9 @@ export default function Footer() {
           </div> */}
 
           <div className="footerRight">
-            <div>@ Sithum Buddhika Jayalal</div>
+            <div>
+              Copyright © 2026 - All right reserved by Sithum Buddhika Jayalal
+            </div>
             {/* <div>Made In Figma</div> */}
           </div>
         </div>

@@ -11,6 +11,10 @@ const ProfileSchema = new Schema(
     resumeUrl: { type: String, default: "" }, // put a Google Drive / Dropbox / your hosted URL
     email: { type: String, default: "" },
     phone: { type: String, default: "" },
+    whatsapp: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true },
 );

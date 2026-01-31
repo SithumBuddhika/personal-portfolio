@@ -37,9 +37,9 @@ export default function Navbar({ resumeUrl }: { resumeUrl?: string }) {
     <header className="navbar">
       <div className="container">
         <div className="navRow">
-          <Link href="/" className="brand">
-            {/* <span className="brandDot" /> */}
-            {/* <span className="brandText">Personal</span> */}
+          {/* ✅ Brand (NO circle) */}
+          <Link href="/" className="brand" aria-label="Go to home">
+            <span className="brandText">SithumJ</span>
           </Link>
 
           {/* desktop */}
@@ -76,10 +76,15 @@ export default function Navbar({ resumeUrl }: { resumeUrl?: string }) {
 
       <div className={`mobileMenu ${open ? "open" : ""}`}>
         <div className="mobileMenuTop">
-          <div className="mobileMenuBrand">
-            <span className="brandDot" />
-            {/* <span className="brandText">Personal</span> */}
-          </div>
+          {/* ✅ Mobile Brand (NO circle) */}
+          <Link
+            href="/"
+            className="mobileMenuBrand"
+            aria-label="Go to home"
+            onClick={() => setOpen(false)}
+          >
+            <span className="brandText">SithumJ</span>
+          </Link>
 
           <button
             className="closeBtn"

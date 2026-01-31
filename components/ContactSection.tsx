@@ -3,19 +3,20 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function ContactSection({
-  email,
-  phone,
-}: {
+type Props = {
   email: string;
-  phone: string;
-}) {
+  phone?: string;
+  whatsapp?: string;
+};
+
+export default function ContactSection({ email, phone, whatsapp }: Props) {
   const [form, setForm] = useState({
     name: "",
     email: "",
     website: "",
     message: "",
   });
+
   const [loading, setLoading] = useState(false);
   const [btnActive, setBtnActive] = useState(false);
 
@@ -48,6 +49,13 @@ export default function ContactSection({
       alert("Something went wrong ❌");
     }
   };
+
+  const whatsappLink =
+    whatsapp && whatsapp.startsWith("+")
+      ? `https://wa.me/${whatsapp.replace("+", "")}`
+      : whatsapp
+        ? `https://wa.me/${whatsapp}`
+        : null;
 
   return (
     <section className="contactWrap">
@@ -92,7 +100,6 @@ export default function ContactSection({
 
             {/* BUTTON + SOCIALS */}
             <div className="socialRow" style={{ marginTop: 18 }}>
-              {/* Get In Touch button */}
               <button
                 className="contactBtn"
                 onClick={handleSubmit}
@@ -109,39 +116,14 @@ export default function ContactSection({
                 {loading ? "Sending..." : "Get In Touch"}
               </button>
 
-              {/* socials — SAME STYLE AS HERO */}
-
               <a
                 href="https://github.com/SithumBuddhika"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Discord"
-                style={{
-                  display: "inline-block",
-                  cursor: "pointer",
-                }}
               >
                 <Image
                   src="/assets/social-github.png"
-                  alt="Github"
-                  width={56}
-                  height={56}
-                />
-              </a>
-
-              <a
-                href="https://discord.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Discord"
-                style={{
-                  display: "inline-block",
-                  cursor: "pointer",
-                }}
-              >
-                <Image
-                  src="/assets/social-discord.png"
-                  alt="Discord"
+                  alt="GitHub"
                   width={56}
                   height={56}
                 />
@@ -151,11 +133,6 @@ export default function ContactSection({
                 href="https://www.linkedin.com/in/sithum-buddhika-jayalal-827860341"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="LinkedIn"
-                style={{
-                  display: "inline-block",
-                  cursor: "pointer",
-                }}
               >
                 <Image
                   src="/assets/social-linkedin.png"
@@ -164,29 +141,11 @@ export default function ContactSection({
                   height={56}
                 />
               </a>
-
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Twitter"
-                style={{
-                  display: "inline-block",
-                  cursor: "pointer",
-                }}
-              >
-                <Image
-                  src="/assets/social-twitter.png"
-                  alt="Twitter"
-                  width={56}
-                  height={56}
-                />
-              </a>
             </div>
           </div>
 
           {/* RIGHT INFO */}
-          <div>
+          <div className="contactInfo">
             <h2 className="bigTitle">
               Let’s talk for
               <br />
@@ -198,8 +157,38 @@ export default function ContactSection({
               user-friendly, and memorable interactive experiences.
             </p>
 
-            <div className="bigStrong">{email}</div>
-            <div className="bigStrong">{phone}</div>
+            <div className="contactCard">
+              {/* EMAIL */}
+              <div className="contactItem">
+                <span className="contactLabel">Email</span>
+                <a href={`mailto:${email}`} className="contactValue">
+                  {email}
+                </a>
+              </div>
+
+              {/* WHATSAPP – PRIMARY */}
+              {whatsappLink && (
+                <div className="contactItem">
+                  <span className="contactLabel">WhatsApp (preferred)</span>
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="contactValue whatsapp"
+                  >
+                    Chat on WhatsApp
+                  </a>
+                </div>
+              )}
+
+              {/* PHONE – SECONDARY */}
+              {phone && (
+                <div className="contactItem">
+                  <span className="contactLabel">Phone</span>
+                  <span className="contactValue muted">{phone}</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
