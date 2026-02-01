@@ -11,28 +11,20 @@ const skills = [
   { name: "React", src: "/assets/skill-react.svg" },
   { name: "Tailwind", src: "/assets/skill-tailwind.svg" },
   { name: "Typescript", src: "/assets/skill-ts.svg" },
-
-  { name: "Node.js", src: "/assets/skills-nodejs.svg" },
+  { name: "Node", src: "/assets/skills-nodejs.svg" }, // ✅ your new skill icon
 ];
 
 export default function SkillGrid() {
   return (
-    <div
-      style={{
-        marginTop: 44,
-        display: "grid",
-        gridTemplateColumns: "repeat(5, 1fr)",
-        gap: 26,
-      }}
-    >
+    <div className="skillsGrid">
       {skills.map((s) => (
-        <div key={s.name} style={{ display: "flex", justifyContent: "center" }}>
+        <div key={s.name} className="skillItem">
           <Image
             src={s.src}
             alt={s.name}
             width={220}
             height={220}
-            style={{ width: "100%", maxWidth: 180, height: "auto" }}
+            className="skillImg"
             priority={s.name === "Git" || s.name === "Javascript"}
           />
         </div>

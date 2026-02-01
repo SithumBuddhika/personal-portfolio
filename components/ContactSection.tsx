@@ -99,7 +99,7 @@ export default function ContactSection({ email, phone, whatsapp }: Props) {
             />
 
             {/* BUTTON + SOCIALS */}
-            <div className="socialRow" style={{ marginTop: 18 }}>
+            <div className="contactActions" style={{ marginTop: 18 }}>
               <button
                 className="contactBtn"
                 onClick={handleSubmit}

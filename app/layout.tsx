@@ -12,6 +12,10 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Personal Portfolio",
   description: "My official portfolio website",
+  icons: {
+    icon: "/about.jpg",
+    apple: "/about.jpg",
+  },
 };
 
 export default function RootLayout({
