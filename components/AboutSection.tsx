@@ -1,45 +1,3 @@
-// import Image from "next/image";
-
-// export default function AboutSection() {
-//   return (
-//     <section id="about" className="about-wrap">
-//       <div className="container">
-//         <div className="about-grid">
-//           <div className="overflow-hidden rounded-[12px]">
-//             <Image
-//               src="/assets/about.jpg"
-//               alt="About"
-//               width={900}
-//               height={900}
-//               className="w-full h-auto object-cover"
-//             />
-//           </div>
-
-//           <div>
-//             <h2 className="about-title">About Me</h2>
-//             <p className="about-text">
-//               I&apos;m a passionate, self-proclaimed designer who specializes in
-//               full stack development (React.js & Node.js). I am very
-//               enthusiastic about bringing the technical and visual aspects of
-//               digital products to life. User experience, pixel perfect design,
-//               and writing clear, readable, highly performant code matters to me.
-//               <br />
-//               <br />
-//               I began my journey as a web developer in 2015, and since then,
-//               I&apos;ve continued to grow and evolve as a developer, taking on
-//               new challenges and learning the latest technologies along the way.
-//               <br />
-//               <br />
-//               When I&apos;m not in full-on developer mode, you can find me
-//               hovering around on twitter or on indie hacker.
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
 import Image from "next/image";
 
 export default function AboutSection() {
@@ -96,18 +54,11 @@ export default function AboutSection() {
                 maxWidth: 620,
               }}
             >
-              I’m a Software Engineering undergraduate at SLIIT with a strong
-              interest in web application development and full-stack
-              engineering. I enjoy taking an idea from a rough concept and
-              turning it into a real product—from designing backend APIs to
-              building clean, user-friendly interfaces.
-              <br />
-              <br />
-              I’m a Software Engineering undergraduate at SLIIT with a strong
-              interest in web application development and full-stack
-              engineering. I enjoy taking an idea from a rough concept and
-              turning it into a real product—from designing backend APIs to
-              building clean, user-friendly interfaces.
+              I’m a Software Engineering undergraduate at SLIIT who builds
+              modern web applications with a strong focus on clean UI and
+              practical features. I like working end-to-end—from planning and
+              implementing backend functionality to delivering responsive,
+              polished interfaces.
               <br />
               <br />
               I’m currently looking for internship or entry-level opportunities
