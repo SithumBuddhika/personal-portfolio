@@ -54,6 +54,8 @@ export default function AboutSection() {
                 maxWidth: 620,
               }}
             >
+              <br />
+              <br />
               I’m a Software Engineering undergraduate at SLIIT who builds
               modern web applications with a strong focus on clean UI and
               practical features. I like working end-to-end—from planning and
