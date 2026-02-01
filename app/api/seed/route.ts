@@ -11,12 +11,14 @@ export async function GET() {
   const existingProfile = await Profile.findOne({});
   if (!existingProfile) {
     await Profile.create({
-      name: "Evren Shah",
-      countryText: "Based in Sri Lanka",
-      roles: ["Frontend Developer", "SE Undergraduate", "UI Engineer"],
-      resumeUrl: "",
-      email: "yourmail@gmail.com",
-      phone: "1234567890",
+      name: "Sithum Buddhika Jayalal",
+      countryText: "Sri Lanka",
+      roles: ["SE Undergraduate", "Full-Stack Developer"],
+      resumeUrl:
+        "https://drive.google.com/uc?export=download&id=1IVXd3HeljQCl1hOiU7BksiWrUCJqFUF8",
+      email: "officialsithumbuddhika@gmail.com",
+      phone: "+94768863678",
+      whatsapp: "+94763464078", // ✅ required
     });
   }
 

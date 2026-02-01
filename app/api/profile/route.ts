@@ -14,10 +14,12 @@ export async function GET() {
       profile: profile || {
         name: "Your Name",
         countryText: "Based in Sri Lanka",
-        roles: ["Frontend Developer", "SE Undergraduate", "Next.js Developer"],
-        resumeUrl: "",
+        roles: ["Frontend Developer", "SE Undergraduate"],
+        resumeUrl:
+          "https://drive.google.com/uc?export=download&id=1IVXd3HeljQCl1hOiU7BksiWrUCJqFUF8",
         email: "yourmail@gmail.com",
         phone: "07XXXXXXXX",
+        whatsapp: "+94763464078",
       },
     });
   } catch {
