@@ -10,8 +10,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Personal Portfolio",
-  description: "My official portfolio website",
+  title: "Sithum Buddhika Jayalal",
+  description: "My official portfolio website v1",
   icons: {
     icon: "/about.jpg",
     apple: "/about.jpg",
