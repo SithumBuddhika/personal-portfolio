@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   title: "Sithum Buddhika Jayalal",
   description: "My official portfolio website v1",
   icons: {
-    icon: "/about.jpg",
-    apple: "/about.jpg",
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
