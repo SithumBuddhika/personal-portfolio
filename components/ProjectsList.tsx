@@ -1,3 +1,6 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 
@@ -11,7 +14,27 @@ type Project = {
   repoUrl?: string;
 };
 
+const PROJECTS_PER_PAGE = 6;
+
 export default function ProjectsList({ projects }: { projects: Project[] }) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
+
+  const visibleProjects = useMemo(() => {
+    const start = (currentPage - 1) * PROJECTS_PER_PAGE;
+    return projects.slice(start, start + PROJECTS_PER_PAGE);
+  }, [projects, currentPage]);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const btnStyle = {
     marginTop: 16,
     display: "inline-flex",
@@ -19,10 +42,10 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
     gap: 8,
     fontWeight: 800,
     textDecoration: "none",
-    color: "inherit", // ✅ becomes white automatically on dark pages
+    color: "inherit",
     padding: "10px 12px",
     borderRadius: 12,
-    border: "1.5px solid rgba(255,255,255,0.22)", // ✅ visible on dark
+    border: "1.5px solid rgba(255,255,255,0.22)",
     width: "fit-content" as const,
     lineHeight: 1,
   };
@@ -43,9 +66,9 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
         </h1>
 
         <div style={{ display: "grid", gap: 40 }}>
-          {projects.map((p, idx) => (
+          {visibleProjects.map((p, idx) => (
             <div key={p._id?.toString?.() || p.order || idx}>
-              {/* ✅ Desktop row */}
+              {/* Desktop row */}
               <div
                 className="projectsRowDesktop"
                 style={{
@@ -100,7 +123,6 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
                     {p.description}
                   </p>
 
-                  {/* ✅ Live + Repo buttons */}
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                     {p.liveUrl ? (
                       <a
@@ -127,7 +149,7 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
                 </div>
               </div>
 
-              {/* ✅ Mobile row (stacked) */}
+              {/* Mobile row */}
               <div className="projectsRowMobile" style={{ display: "none" }}>
                 <Image
                   src={p.imageUrl}
@@ -208,6 +230,81 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
             </div>
           ))}
         </div>
+
+        {totalPages > 1 ? (
+          <div
+            style={{
+              marginTop: 60,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              style={{
+                height: 42,
+                padding: "0 16px",
+                borderRadius: 12,
+                border: "1.5px solid rgba(255,255,255,0.22)",
+                background: "transparent",
+                color: "inherit",
+                fontWeight: 800,
+                cursor: currentPage === 1 ? "not-allowed" : "pointer",
+                opacity: currentPage === 1 ? 0.45 : 1,
+              }}
+            >
+              Prev
+            </button>
+
+            {Array.from({ length: totalPages }).map((_, index) => {
+              const page = index + 1;
+              const isActive = page === currentPage;
+
+              return (
+                <button
+                  key={page}
+                  onClick={() => goToPage(page)}
+                  style={{
+                    width: 42,
+                    height: 42,
+                    borderRadius: 12,
+                    border: isActive
+                      ? "1.5px solid #fff"
+                      : "1.5px solid rgba(255,255,255,0.22)",
+                    background: isActive ? "#fff" : "transparent",
+                    color: isActive ? "#000" : "inherit",
+                    fontWeight: 900,
+                    cursor: "pointer",
+                  }}
+                >
+                  {page}
+                </button>
+              );
+            })}
+
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              style={{
+                height: 42,
+                padding: "0 16px",
+                borderRadius: 12,
+                border: "1.5px solid rgba(255,255,255,0.22)",
+                background: "transparent",
+                color: "inherit",
+                fontWeight: 800,
+                cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+                opacity: currentPage === totalPages ? 0.45 : 1,
+              }}
+            >
+              Next
+            </button>
+          </div>
+        ) : null}
       </div>
     </section>
   );

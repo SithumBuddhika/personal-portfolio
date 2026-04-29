@@ -1,3 +1,6 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
@@ -11,11 +14,27 @@ type Certification = {
   credentialUrl?: string;
 };
 
+const CERTIFICATIONS_PER_PAGE = 3;
+
 export default function CertificationsList({
   certifications,
 }: {
   certifications: Certification[];
 }) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(certifications.length / CERTIFICATIONS_PER_PAGE);
+
+  const visibleCertifications = useMemo(() => {
+    const start = (currentPage - 1) * CERTIFICATIONS_PER_PAGE;
+    return certifications.slice(start, start + CERTIFICATIONS_PER_PAGE);
+  }, [certifications, currentPage]);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const btnStyle = {
     marginTop: 14,
     display: "inline-flex",
@@ -23,10 +42,10 @@ export default function CertificationsList({
     gap: 8,
     fontWeight: 800,
     textDecoration: "none",
-    color: "inherit", // ✅ becomes white automatically on dark pages
+    color: "inherit",
     padding: "10px 12px",
     borderRadius: 12,
-    border: "1.5px solid rgba(255,255,255,0.22)", // ✅ visible on dark
+    border: "1.5px solid rgba(255,255,255,0.22)",
     width: "fit-content" as const,
     lineHeight: 1,
   };
@@ -47,16 +66,8 @@ export default function CertificationsList({
         </h1>
 
         <div style={{ display: "grid", gap: 36 }}>
-          {certifications.map((c) => (
-            <div
-              key={c._id || c.order}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "360px 1fr",
-                gap: 32,
-                alignItems: "center",
-              }}
-            >
+          {visibleCertifications.map((c) => (
+            <div key={c._id || c.order} className="certListRow">
               <Image
                 src={c.imageUrl}
                 alt={c.title}
@@ -110,21 +121,114 @@ export default function CertificationsList({
                   </a>
                 ) : null}
               </div>
-
-              <style>{`
-                @media (max-width: 980px) {
-                  section { padding: 56px 0 !important; }
-                  h1 { font-size: 34px !important; margin-bottom: 34px !important; }
-                  div[style*="grid-template-columns: 360px 1fr"] {
-                    grid-template-columns: 1fr !important;
-                    gap: 18px !important;
-                  }
-                }
-              `}</style>
             </div>
           ))}
         </div>
+
+        {totalPages > 1 ? (
+          <div className="paginationWrap">
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="paginationBtn"
+            >
+              Prev
+            </button>
+
+            {Array.from({ length: totalPages }).map((_, index) => {
+              const page = index + 1;
+              const isActive = page === currentPage;
+
+              return (
+                <button
+                  key={page}
+                  onClick={() => goToPage(page)}
+                  className={`paginationNumber ${isActive ? "active" : ""}`}
+                >
+                  {page}
+                </button>
+              );
+            })}
+
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="paginationBtn"
+            >
+              Next
+            </button>
+          </div>
+        ) : null}
       </div>
+
+      <style>{`
+        .certListRow {
+          display: grid;
+          grid-template-columns: 360px 1fr;
+          gap: 32px;
+          align-items: center;
+        }
+
+        .paginationWrap {
+          margin-top: 60px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .paginationBtn,
+        .paginationNumber {
+          height: 42px;
+          border-radius: 12px;
+          border: 1.5px solid rgba(255,255,255,0.22);
+          background: transparent;
+          color: inherit;
+          font-weight: 800;
+          cursor: pointer;
+        }
+
+        .paginationBtn {
+          padding: 0 16px;
+        }
+
+        .paginationBtn:disabled {
+          opacity: 0.45;
+          cursor: not-allowed;
+        }
+
+        .paginationNumber {
+          width: 42px;
+        }
+
+        .paginationNumber.active {
+          background: #fff;
+          color: #000;
+          border-color: #fff;
+          font-weight: 900;
+        }
+
+        @media (max-width: 980px) {
+          section {
+            padding: 56px 0 !important;
+          }
+
+          h1 {
+            font-size: 34px !important;
+            margin-bottom: 34px !important;
+          }
+
+          .certListRow {
+            grid-template-columns: 1fr;
+            gap: 18px;
+          }
+
+          .paginationWrap {
+            margin-top: 42px;
+          }
+        }
+      `}</style>
     </section>
   );
 }
