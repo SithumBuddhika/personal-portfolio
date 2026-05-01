@@ -60,6 +60,7 @@ export default function CertificationsList({
             textAlign: "center",
             marginBottom: 60,
             color: "inherit",
+            fontFamily: "var(--font-premium)",
           }}
         >
           My Certifications

@@ -31,7 +31,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
           <div className="max-[980px]:hidden" />
 
           <h2
-            className="sectionTitle"
+            className="sectionTitle premiumTitle"
             style={{ margin: 0, textAlign: "center" }}
           >
             My <span>Recent Projects</span>

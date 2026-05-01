@@ -60,6 +60,7 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
             textAlign: "center",
             marginBottom: 60,
             color: "inherit",
+            fontFamily: "var(--font-premium)",
           }}
         >
           My Projects

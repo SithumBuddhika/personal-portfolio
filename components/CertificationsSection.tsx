@@ -51,7 +51,7 @@ export default function CertificationsSection({
           <div className="max-[980px]:hidden" />
 
           <h2
-            className="sectionTitle"
+            className="sectionTitle premiumTitle"
             style={{ margin: 0, textAlign: "center" }}
           >
             My <span>Certifications</span>

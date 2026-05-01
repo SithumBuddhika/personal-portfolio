@@ -4,6 +4,7 @@
 :root {
   --container: 1180px;
   --title-font: var(--font-title); /* ✅ DM Sans from layout.tsx */
+  --premium-font: var(--font-premium); /* ✅ Outfit from layout.tsx */
 }
 
 /* ✅ smooth anchor scrolling */
@@ -55,6 +56,10 @@ img {
   text-align: center;
   line-height: 1.1;
   margin: 0;
+}
+
+.premiumTitle {
+  font-family: var(--premium-font), sans-serif !important;
 }
 .sectionTitle span {
   font-weight: 900;
