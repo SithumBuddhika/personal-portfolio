@@ -9,7 +9,9 @@ type Certification = {
   order: number;
   title: string;
   issuer: string;
-  year: string;
+  issuedDate?: string;
+  year?: string;
+  description?: string;
   imageUrl: string;
   credentialUrl?: string;
 };
@@ -108,8 +110,24 @@ export default function CertificationsList({
                     overflowWrap: "anywhere",
                   }}
                 >
-                  {c.issuer} · {c.year}
+                  {c.issuer} · {c.issuedDate || c.year || ""}
                 </div>
+
+                {c.description ? (
+                  <p
+                    style={{
+                      marginTop: 12,
+                      lineHeight: 1.65,
+                      maxWidth: 560,
+                      opacity: 0.75,
+                      overflowWrap: "anywhere",
+                      wordBreak: "break-word",
+                      fontSize: 14,
+                    }}
+                  >
+                    {c.description}
+                  </p>
+                ) : null}
 
                 {c.credentialUrl ? (
                   <a
