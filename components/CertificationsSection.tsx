@@ -85,15 +85,15 @@ export default function CertificationsSection({
           {certifications.map((c, idx) => (
             <div
               key={c._id || String(c.order)}
-              className={`workRow ${idx % 2 ? "reverse" : ""}`}
+              className={`workRow certRow ${idx % 2 ? "reverse" : ""}`}
             >
-              <div className="workMedia">
+              <div className="workMedia certMedia">
                 <Image
                   src={c.imageUrl}
                   alt={c.title}
                   width={1400}
                   height={900}
-                  className="workImg"
+                  className="workImg certImg"
                 />
               </div>
 

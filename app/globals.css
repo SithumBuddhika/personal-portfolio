@@ -629,6 +629,37 @@ img {
   object-fit: cover;
   display: block;
 }
+@media (min-width: 981px) {
+  /* Projects Section: Widescreen, 490px wide, 280px tall */
+  .workRow {
+    grid-template-columns: 490px 1fr;
+  }
+  .workRow.reverse {
+    grid-template-columns: 1fr 490px;
+  }
+  .workImg {
+    height: 280px;
+  }
+
+  /* Certifications Section: Exact document ratio, 440px wide, 310px tall */
+  .certRow {
+    grid-template-columns: 440px 1fr;
+  }
+  .certRow.reverse {
+    grid-template-columns: 1fr 440px;
+  }
+  .certImg {
+    height: 310px;
+  }
+}
+
+/* Certifications specific styling to show the entire certificate without cropping */
+.certMedia {
+  background: #ffffff;
+}
+.certImg {
+  object-fit: contain !important;
+}
 .workNum {
   font-size: 46px;
   font-weight: 900;
