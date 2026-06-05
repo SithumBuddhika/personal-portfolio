@@ -13,6 +13,23 @@ type Project = {
 };
 
 export default function ProjectsSection({ projects }: { projects: Project[] }) {
+  const getTruncatedDesc = (description: string) => {
+    const words = description.split(/\s+/);
+    const limit = 20;
+    if (words.length > limit) {
+      const count = Math.round(words.length * 0.6);
+      const displayCount = Math.max(limit, count);
+      return {
+        text: words.slice(0, displayCount).join(" ") + "...",
+        isTruncated: true,
+      };
+    }
+    return {
+      text: description,
+      isTruncated: false,
+    };
+  };
+
   return (
     <section className="sectionSoftBlack workWrap">
       <div className="container">
@@ -62,27 +79,44 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
         </div>
 
         <div className="workList">
-          {projects.map((p, idx) => (
-            <div
-              key={p._id || String(p.order)}
-              className={`workRow ${idx % 2 ? "reverse" : ""}`}
-            >
-              <div className="workMedia">
-                <Image
-                  src={p.imageUrl}
-                  alt={p.title}
-                  width={1400}
-                  height={900}
-                  className="workImg"
-                />
-              </div>
-
-              <div>
-                <div className="workNum">
-                  {String(p.order).padStart(2, "0")}
+          {projects.map((p, idx) => {
+            const { text, isTruncated } = getTruncatedDesc(p.description);
+            return (
+              <div
+                key={p._id || String(p.order)}
+                className={`workRow ${idx % 2 ? "reverse" : ""}`}
+              >
+                <div className="workMedia">
+                  <Image
+                    src={p.imageUrl}
+                    alt={p.title}
+                    width={1400}
+                    height={900}
+                    className="workImg"
+                  />
                 </div>
-                <div className="workH">{p.title}</div>
-                <p className="workP">{p.description}</p>
+
+                <div>
+                  <div className="workNum">
+                    {String(p.order).padStart(2, "0")}
+                  </div>
+                  <div className="workH">{p.title}</div>
+                  <p className="workP">
+                    {text}
+                    {isTruncated && (
+                      <Link
+                        href={`/projects#project-${p._id || p.order}`}
+                        style={{
+                          color: "rgba(255,255,255,0.85)",
+                          textDecoration: "underline",
+                          fontWeight: 650,
+                          marginLeft: 6,
+                        }}
+                      >
+                        more
+                      </Link>
+                    )}
+                  </p>
 
                 {/* ✅ Buttons */}
                 <div
@@ -139,8 +173,9 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
+      </div>
       </div>
     </section>
   );

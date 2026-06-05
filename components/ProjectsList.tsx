@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 
@@ -18,6 +18,28 @@ const PROJECTS_PER_PAGE = 6;
 
 export default function ProjectsList({ projects }: { projects: Project[] }) {
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith("#project-")) {
+      const targetId = hash.replace("#project-", "");
+      const index = projects.findIndex(
+        (p) => String(p._id || p.order) === targetId
+      );
+      if (index !== -1) {
+        const pageNumber = Math.ceil((index + 1) / PROJECTS_PER_PAGE);
+        setCurrentPage(pageNumber);
+
+        // Wait for next render frame/tick for the paginated page to mount
+        setTimeout(() => {
+          const element = document.getElementById(hash.substring(1));
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }, 150);
+      }
+    }
+  }, [projects]);
 
   const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
 
@@ -68,7 +90,10 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
 
         <div style={{ display: "grid", gap: 40 }}>
           {visibleProjects.map((p, idx) => (
-            <div key={p._id?.toString?.() || p.order || idx}>
+            <div
+              key={p._id?.toString?.() || p.order || idx}
+              id={`project-${p._id || p.order}`}
+            >
               {/* Desktop row */}
               <div
                 className="projectsRowDesktop"
