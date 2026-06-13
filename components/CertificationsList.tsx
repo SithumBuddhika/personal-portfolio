@@ -16,7 +16,7 @@ type Certification = {
   credentialUrl?: string;
 };
 
-const CERTIFICATIONS_PER_PAGE = 3;
+const CERTIFICATIONS_PER_PAGE = 6;
 
 export default function CertificationsList({
   certifications,
