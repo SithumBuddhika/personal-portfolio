@@ -15,6 +15,8 @@ const ProfileSchema = new Schema(
       type: String,
       required: true,
     },
+    aboutText1: { type: String, default: "" },
+    aboutText2: { type: String, default: "" },
   },
   { timestamps: true },
 );

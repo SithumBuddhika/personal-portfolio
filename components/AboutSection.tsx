@@ -1,6 +1,19 @@
 import Image from "next/image";
 
-export default function AboutSection() {
+const defaultAboutText1 = `I’m a Software Engineering undergraduate at SLIIT with hands-on experience building modern web applications and working across the full development lifecycle. I enjoy working end-to-end—from planning and backend development to creating responsive, polished interfaces—with a strong focus on clean code, practical features, and maintainable solutions.`;
+
+const defaultAboutText2 = `Alongside development, I’m currently gaining industry experience in a Software Engineering Team Lead Intern role, where I’m strengthening my technical leadership, collaboration, and project coordination skills. I’m always looking to learn from experienced engineers, contribute to meaningful products, and continue growing as a full-stack software engineer.`;
+
+export default function AboutSection({
+  aboutText1,
+  aboutText2,
+}: {
+  aboutText1?: string;
+  aboutText2?: string;
+}) {
+  const p1 = aboutText1 || defaultAboutText1;
+  const p2 = aboutText2 || defaultAboutText2;
+
   return (
     <section id="about" className="aboutWrap">
       <div className="container">
@@ -47,25 +60,26 @@ export default function AboutSection() {
 
             <p
               style={{
-                marginTop: 18,
+                marginTop: 24,
                 fontSize: 16,
                 lineHeight: "30px",
                 color: "rgba(0,0,0,0.65)",
                 maxWidth: 620,
               }}
             >
-              <br />
-              <br />
-              I’m a Software Engineering undergraduate at SLIIT who builds
-              modern web applications with a strong focus on clean UI and
-              practical features. I like working end-to-end—from planning and
-              implementing backend functionality to delivering responsive,
-              polished interfaces.
-              <br />
-              <br />
-              I’m currently looking for internship or entry-level opportunities
-              where I can learn from experienced engineers, contribute to real
-              products, and keep improving as a full-stack developer.
+              {p1}
+            </p>
+
+            <p
+              style={{
+                marginTop: 20,
+                fontSize: 16,
+                lineHeight: "30px",
+                color: "rgba(0,0,0,0.65)",
+                maxWidth: 620,
+              }}
+            >
+              {p2}
             </p>
           </div>
         </div>

@@ -9,6 +9,9 @@ export async function GET() {
   await connectDB();
 
   // Profile (single doc)
+  const defaultAboutText1 = `I’m a Software Engineering undergraduate at SLIIT with hands-on experience building modern web applications and working across the full development lifecycle. I enjoy working end-to-end—from planning and backend development to creating responsive, polished interfaces—with a strong focus on clean code, practical features, and maintainable solutions.`;
+  const defaultAboutText2 = `Alongside development, I’m currently gaining industry experience in a Software Engineering Team Lead Intern role, where I’m strengthening my technical leadership, collaboration, and project coordination skills. I’m always looking to learn from experienced engineers, contribute to meaningful products, and continue growing as a full-stack software engineer.`;
+
   const existingProfile = await Profile.findOne({});
   if (!existingProfile) {
     await Profile.create({
@@ -20,7 +23,21 @@ export async function GET() {
       email: "officialsithumbuddhika@gmail.com",
       phone: "+94768863678",
       whatsapp: "+94763464078", // ✅ required
+      aboutText1: defaultAboutText1,
+      aboutText2: defaultAboutText2,
     });
+  } else {
+    // Use raw MongoDB collection driver to bypass Mongoose strict schema cache filtering
+    await Profile.collection.updateOne(
+      {},
+      {
+        $set: {
+          aboutText1: defaultAboutText1,
+          aboutText2: defaultAboutText2,
+        },
+        $unset: { aboutText: "" },
+      }
+    );
   }
 
   // Projects

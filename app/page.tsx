@@ -164,7 +164,10 @@ export default async function Page() {
 
       {/* ABOUT */}
       <section id="about">
-        <AboutSection />
+        <AboutSection
+          aboutText1={profile?.aboutText1}
+          aboutText2={profile?.aboutText2}
+        />
       </section>
 
       {/* SKILLS */}
