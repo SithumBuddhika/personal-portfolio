@@ -13,6 +13,7 @@ import { connectDB } from "@/lib/db";
 import { Profile } from "@/models/Profile";
 import { Project } from "@/models/Project";
 import { Certification } from "@/models/Certification";
+import { Experience } from "@/models/Experience";
 
 export default async function Page() {
   await connectDB();
@@ -38,6 +39,13 @@ export default async function Page() {
     .sort({ order: 1 })
     .limit(3)
     .lean();
+
+  const experiences = await Experience.find({})
+    .sort({ order: 1 })
+    .lean();
+
+  const safeExperiences = JSON.parse(JSON.stringify(experiences));
+
 
   return (
     <main id="home">
@@ -168,7 +176,7 @@ export default async function Page() {
       </section>
 
       {/* EXPERIENCE */}
-      <ExperienceSection />
+      <ExperienceSection experiences={safeExperiences || []} />
 
       {/* PROJECTS */}
       <section id="projects">

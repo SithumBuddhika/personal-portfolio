@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/db";
 import { Project } from "@/models/Project";
 import { Profile } from "@/models/Profile";
 import { Certification } from "@/models/Certification";
+import { Experience } from "@/models/Experience";
 
 export async function GET() {
   await connectDB();
@@ -99,8 +100,36 @@ export async function GET() {
     ]);
   }
 
+  // Experience
+  const eCount = await Experience.countDocuments();
+  if (eCount === 0) {
+    await Experience.insertMany([
+      {
+        order: 1,
+        company: "Gamage Recruiters (Pvt) Ltd",
+        role: "Team Lead Intern – Software Engineering",
+        logoUrl: "https://res.cloudinary.com/dhv53owoc/image/upload/v1787577339/portfolio/company_gamage_logo.svg",
+        startDate: "July 2026",
+        present: true,
+        description:
+          "Led a team of intern developers to design and implement robust full-stack applications. Assisted in optimizing database queries, improving API responses, and mentoring junior engineers.",
+      },
+      {
+        order: 2,
+        company: "Freelance / Open Source Contributor",
+        role: "Full-Stack Developer",
+        logoUrl: "https://res.cloudinary.com/dhv53owoc/image/upload/v1787577339/portfolio/company_gamage_logo.svg",
+        startDate: "Jan 2025",
+        endDate: "June 2026",
+        present: false,
+        description:
+          "Designed and built custom web platforms for local businesses. Contributed to open-source React components and library optimizations.",
+      },
+    ]);
+  }
+
   return NextResponse.json({
     ok: true,
-    message: "Seeded profile + projects + certifications (if empty)",
+    message: "Seeded profile + projects + certifications + experiences (if empty)",
   });
 }
