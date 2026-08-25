@@ -45,6 +45,7 @@ export default async function Page() {
     .lean();
 
   const safeExperiences = JSON.parse(JSON.stringify(experiences));
+  const safeProjects = JSON.parse(JSON.stringify(projects));
 
 
   return (
@@ -183,7 +184,7 @@ export default async function Page() {
 
       {/* PROJECTS */}
       <section id="projects">
-        <ProjectsSection projects={(projects as any) || []} />
+        <ProjectsSection projects={(safeProjects as any) || []} />
       </section>
 
       {/* CERTIFICATIONS */}

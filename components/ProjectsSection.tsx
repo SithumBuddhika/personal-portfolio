@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react"; // ✅ add Github
@@ -11,6 +14,112 @@ type Project = {
   liveUrl?: string;
   repoUrl?: string;
 };
+
+function ProjectRow({ p, idx, getTruncatedDesc }: { 
+  p: Project; 
+  idx: number; 
+  getTruncatedDesc: (description: string) => { text: string; isTruncated: boolean } 
+}) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { text, isTruncated } = getTruncatedDesc(p.description);
+
+  return (
+    <div className={`workRow ${idx % 2 ? "reverse" : ""}`}>
+      <div className="workMedia">
+        <Image
+          src={p.imageUrl}
+          alt={p.title}
+          width={1400}
+          height={900}
+          className="workImg"
+        />
+      </div>
+
+      <div>
+        <div className="workNum">
+          {String(p.order).padStart(2, "0")}
+        </div>
+        <div className="workH">{p.title}</div>
+        <p className="workP">
+          {isExpanded ? p.description : text}
+          {isTruncated && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: 0,
+                color: "rgba(255,255,255,0.85)",
+                textDecoration: "underline",
+                fontWeight: 650,
+                marginLeft: 6,
+                cursor: "pointer",
+                fontFamily: "inherit",
+                fontSize: "inherit",
+              }}
+            >
+              {isExpanded ? "see less" : "see more"}
+            </button>
+          )}
+        </p>
+
+        {/* ✅ Buttons */}
+        <div
+          style={{
+            display: "flex",
+            gap: 14,
+            flexWrap: "wrap",
+            marginTop: 18,
+          }}
+        >
+          {p.liveUrl ? (
+            <a
+              href={p.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                fontWeight: 800,
+                textDecoration: "none",
+                color: "#fff",
+                padding: "10px 14px",
+                borderRadius: 14,
+                border: "1.5px solid rgba(255,255,255,0.28)",
+                width: "fit-content",
+              }}
+            >
+              <ExternalLink size={18} /> Live
+            </a>
+          ) : null}
+
+          {p.repoUrl ? (
+            <a
+              href={p.repoUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                fontWeight: 800,
+                textDecoration: "none",
+                color: "#fff",
+                padding: "10px 14px",
+                borderRadius: 14,
+                border: "1.5px solid rgba(255,255,255,0.28)",
+                width: "fit-content",
+              }}
+            >
+              <Github size={18} /> Repo
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ProjectsSection({ projects }: { projects: Project[] }) {
   const getTruncatedDesc = (description: string) => {
@@ -79,103 +188,15 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
         </div>
 
         <div className="workList">
-          {projects.map((p, idx) => {
-            const { text, isTruncated } = getTruncatedDesc(p.description);
-            return (
-              <div
-                key={p._id || String(p.order)}
-                className={`workRow ${idx % 2 ? "reverse" : ""}`}
-              >
-                <div className="workMedia">
-                  <Image
-                    src={p.imageUrl}
-                    alt={p.title}
-                    width={1400}
-                    height={900}
-                    className="workImg"
-                  />
-                </div>
-
-                <div>
-                  <div className="workNum">
-                    {String(p.order).padStart(2, "0")}
-                  </div>
-                  <div className="workH">{p.title}</div>
-                  <p className="workP">
-                    {text}
-                    {isTruncated && (
-                      <Link
-                        href={`/projects#project-${p._id || p.order}`}
-                        style={{
-                          color: "rgba(255,255,255,0.85)",
-                          textDecoration: "underline",
-                          fontWeight: 650,
-                          marginLeft: 6,
-                        }}
-                      >
-                        more
-                      </Link>
-                    )}
-                  </p>
-
-                {/* ✅ Buttons */}
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 14,
-                    flexWrap: "wrap",
-                    marginTop: 18,
-                  }}
-                >
-                  {p.liveUrl ? (
-                    <a
-                      href={p.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 8,
-                        fontWeight: 800,
-                        textDecoration: "none",
-                        color: "#fff",
-                        padding: "10px 14px",
-                        borderRadius: 14,
-                        border: "1.5px solid rgba(255,255,255,0.28)",
-                        width: "fit-content",
-                      }}
-                    >
-                      <ExternalLink size={18} /> Live
-                    </a>
-                  ) : null}
-
-                  {p.repoUrl ? (
-                    <a
-                      href={p.repoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 8,
-                        fontWeight: 800,
-                        textDecoration: "none",
-                        color: "#fff",
-                        padding: "10px 14px",
-                        borderRadius: 14,
-                        border: "1.5px solid rgba(255,255,255,0.28)",
-                        width: "fit-content",
-                      }}
-                    >
-                      <Github size={18} /> Repo {/* ✅ THIS is the fix */}
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+          {projects.map((p, idx) => (
+            <ProjectRow 
+              key={p._id || String(p.order)} 
+              p={p} 
+              idx={idx} 
+              getTruncatedDesc={getTruncatedDesc} 
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
