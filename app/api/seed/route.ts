@@ -13,6 +13,8 @@ export async function GET() {
   const defaultAboutText2 = `Alongside development, I’m currently gaining industry experience in a Software Engineering Team Lead Intern role, where I’m strengthening my technical leadership, collaboration, and project coordination skills. I’m always looking to learn from experienced engineers, contribute to meaningful products, and continue growing as a full-stack software engineer.`;
 
   const existingProfile = await Profile.findOne({});
+  const defaultDescription = "Software Engineering undergraduate at SLIIT building modern full-stack web applications with React, Node.js, Express, and MongoDB. I focus on clean architecture, responsive interfaces, smooth user experiences, and developing practical, maintainable solutions from frontend to backend.";
+
   if (!existingProfile) {
     await Profile.create({
       name: "Sithum Buddhika Jayalal",
@@ -23,6 +25,7 @@ export async function GET() {
       email: "officialsithumbuddhika@gmail.com",
       phone: "+94768863678",
       whatsapp: "+94763464078", // ✅ required
+      description: defaultDescription,
       aboutText1: defaultAboutText1,
       aboutText2: defaultAboutText2,
     });
@@ -32,6 +35,7 @@ export async function GET() {
       {},
       {
         $set: {
+          description: defaultDescription,
           aboutText1: defaultAboutText1,
           aboutText2: defaultAboutText2,
         },

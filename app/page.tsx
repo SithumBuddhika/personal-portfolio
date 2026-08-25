@@ -21,13 +21,14 @@ export default async function Page() {
   const profile =
     (await Profile.findOne({}).lean()) ||
     ({
-      name: "Sithum Biddhika Jayalal",
+      name: "Sithum Buddhika Jayalal",
       countryText: "Sri Lanka",
       roles: ["Developer", "SE Undergraduate"],
       resumeUrl: "",
       email: "Officialsithumbuddhika@gmail.com",
       phone: "+94768863678",
       whatsapp: "+94763464078",
+      description: "",
     } as any);
 
   const projects = await Project.find({ featured: true })
@@ -72,10 +73,7 @@ export default async function Page() {
               </h1>
 
               <p className="heroDesc">
-                Software Engineering undergraduate at SLIIT building full-stack
-                web applications with React, Node.js, Express, and MongoDB. I
-                care about clean architecture, smooth UX, and shipping practical
-                features.
+                {profile?.description}
               </p>
 
               {/* socials */}

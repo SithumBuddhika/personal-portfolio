@@ -20,6 +20,7 @@ export async function GET() {
         email: "yourmail@gmail.com",
         phone: "07XXXXXXXX",
         whatsapp: "+94763464078",
+        description: "",
       },
     });
   } catch {
@@ -31,6 +32,7 @@ export async function GET() {
         resumeUrl: "",
         email: "yourmail@gmail.com",
         phone: "07XXXXXXXX",
+        description: "",
       },
     });
   }

@@ -15,6 +15,7 @@ const ProfileSchema = new Schema(
       type: String,
       required: true,
     },
+    description: { type: String, default: "" },
     aboutText1: { type: String, default: "" },
     aboutText2: { type: String, default: "" },
   },
