@@ -17,6 +17,7 @@ export default function RoleTicker({ roles }: { roles: string[] }) {
 
   return (
     <span
+      className="roleTicker"
       style={{
         display: "inline-block",
         height: "1em",

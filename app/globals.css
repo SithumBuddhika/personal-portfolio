@@ -10,11 +10,13 @@
 /* ✅ smooth anchor scrolling */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 * {
@@ -1292,4 +1294,38 @@ img {
     font-size: 16px; /* ✅ readable */
     justify-content: center;
   }
+}
+
+/* ====== MOBILE RESPONSIVENESS AND OVERFLOW FIXES ====== */
+@media (max-width: 980px) {
+  .roleTicker {
+    min-width: auto !important;
+    max-width: 100% !important;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .heroTitle {
+    line-height: 1.25 !important;
+  }
+  .heroRole {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 28px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .heroTitle {
+    font-size: 24px !important;
+  }
+}
+
+.contactValue {
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
